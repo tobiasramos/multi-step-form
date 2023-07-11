@@ -3,6 +3,10 @@
 .App {
   margin: 0px;
   padding: 0px;
+  display: flex;
+  justify-content: center;
   box-sizing: border-box;
-  font-family: 'Ubuntu', sans-serif
+  font-family: 'Ubuntu', sans-serif;
+  height: 100vh;
+  background-color: hsl(229, 24%, 87%);
 }

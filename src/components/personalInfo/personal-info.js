@@ -1,24 +1,35 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 const PersonalInfo = () => {
   return (
-    <form>
+    <Form>
       <h1>Informação pessoal</h1>
-      <div>
+      <p>Por favor, forneça seu nome, email e número de telefone.</p>
+      <CampInput>
         <label>Nome:</label>
         <input type="text" />
-      </div>
-      <div>
+      </CampInput>
+      <CampInput>
         <label>Email:</label>
         <input type="email" />
-      </div>
-      <div>
+      </CampInput>
+      <CampInput>
         <label>Numero de telefone:</label>
         <input type="text" />
-      </div>
-    </form>
+      </CampInput>
+      <button>Próxima etapa</button>
+    </Form>
   );
 };
 
 export default PersonalInfo;
+
+const Form = styled.form`
+  margin-left: 30px;
+`;
+
+const CampInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+`;
