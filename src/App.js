@@ -4,6 +4,7 @@ import SelectYourPlan from "./components/selectYourPlan/select-your-plan";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
 import PickAddOns from "./components/personalInfo/pickAddOns/pick-add-ons";
+import FinishingUp from "./components/finishingUp/finishing-up";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/select-your-plan" component={SelectYourPlan} />
           <Route path="/pick-add-ons" component={PickAddOns} />
+          <Route path="/finishing-up" component={FinishingUp} />
         </Switch>
       </Router>
     </div>
