@@ -1,6 +1,14 @@
 import styled from "styled-components";
+import { useHistory } from 'react-router-dom';
+
 
 const PersonalInfo = () => {
+  const history = useHistory();
+
+  const handleNextStep = () => {
+    history.push('/select-your-plan'); 
+  };
+
   return (
     <Form>
       <h1>Informação pessoal</h1>
@@ -17,7 +25,7 @@ const PersonalInfo = () => {
         <label>Numero de telefone:</label>
         <input type="text" />
       </CampInput>
-      <button>Próxima etapa</button>
+      <button onClick={handleNextStep}>Próxima etapa</button>
     </Form>
   );
 };
