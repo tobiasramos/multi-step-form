@@ -3,7 +3,7 @@ import Home from "./page/home";
 import SelectYourPlan from "./components/selectYourPlan/select-your-plan";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
-import PickAddOns from "./components/personalInfo/pickAddOns/pick-add-ons";
+import PickAddOns from "./components/pickAddOns/pick-add-ons";
 import FinishingUp from "./components/finishingUp/finishing-up";
 
 function App() {

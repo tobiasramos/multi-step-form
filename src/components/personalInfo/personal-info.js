@@ -37,44 +37,60 @@ const PersonalInfo = () => {
 
   return (
     <Form onSubmit={handleNextStep}>
-      <h1>Informação pessoal</h1>
-      <p>Por favor, forneça seu nome, email e número de telefone.</p>
+      <Titulo>Informação pessoal</Titulo>
+      <SubTitulo>
+        Por favor, forneça seu nome, email e número de telefone.
+      </SubTitulo>
       <CampInput error={nameError}>
-        <label>Nome:</label>
-        <input
+        <Label>Nome:</Label>
+        <Input
           type="text"
           value={name}
           onChange={(e) => handleInputChange(e, "name")}
         />
-         {nameError && <ErrorMessage>Por favor, preencha o nome.</ErrorMessage>}
+        {nameError && <ErrorMessage>Por favor, preencha o nome.</ErrorMessage>}
       </CampInput>
       <CampInput error={nameError}>
-        <label>Email:</label>
-        <input
+        <Label>Email:</Label>
+        <Input
           type="email"
           value={email}
           onChange={(e) => handleInputChange(e, "email")}
         />
-        {emailError && <ErrorMessage>Por favor, preencha o email.</ErrorMessage>}
+        {emailError && (
+          <ErrorMessage>Por favor, preencha o email.</ErrorMessage>
+        )}
       </CampInput>
       <CampInput error={nameError}>
-        <label>Numero de telefone:</label>
-        <input
+        <Label>Numero de telefone:</Label>
+        <Input
           type="text"
           value={number}
           onChange={(e) => handleInputChange(e, "number")}
         />
-         {numberError && <ErrorMessage>Por favor, preencha o número de telefone.</ErrorMessage>}
+        {numberError && (
+          <ErrorMessage>Por favor, preencha o número de telefone.</ErrorMessage>
+        )}
       </CampInput>
       <button type="submit">Próxima etapa</button>
     </Form>
   );
 };
 
-export default PersonalInfo;
-
 const Form = styled.form`
   margin-left: 30px;
+  width: 25rem;
+  padding: 5px;
+  color: hsl(213, 96%, 18%);
+`;
+
+const Titulo = styled.h1`
+  font-weight: 700;
+`;
+
+const SubTitulo = styled.p`
+  font-size: 14px;
+  font-weight: 400;
 `;
 
 const CampInput = styled.div`
@@ -82,12 +98,30 @@ const CampInput = styled.div`
   flex-direction: column;
   margin-bottom: 15px;
 
-  input {
-    border: 1px solid ${props => props.error ? 'red' : 'gray'};
+  Input {
+    border: 1px solid
+      ${(props) => (props.error ? "hsl(354, 84%, 57%)" : "gray")};
   }
 `;
 
-const ErrorMessage = styled.span`
-  color: red;
-  margin-top: 5px;
+const Label = styled.label`
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: hsl(213, 96%, 18%);
 `;
+
+const Input = styled.input`
+  width: 85%;
+  height: 25px;
+  padding: 5px;
+  border-radius: 10px;
+`;
+
+const ErrorMessage = styled.span`
+  margin-top: 3px;
+  font-size: 14px;
+  font-weight: 700;
+  color: hsl(354, 84%, 57%);
+`;
+
+export default PersonalInfo;
