@@ -12,7 +12,9 @@ const PersonalInfo = () => {
   const [emailError, setEmailError] = useState(false);
   const [numberError, setNumberError] = useState(false);
 
-  const handleNextStep = () => {
+  const handleNextStep = (e) => {
+    e.preventDefault();
+
     if (name && email && number) {
       history.push("/select-your-plan");
     } else {
@@ -37,23 +39,25 @@ const PersonalInfo = () => {
 
   return (
     <Form onSubmit={handleNextStep}>
-      <Titulo>Informação pessoal</Titulo>
-      <SubTitulo>
+      <Title>Informação pessoal</Title>
+      <SubTitle>
         Por favor, forneça seu nome, email e número de telefone.
-      </SubTitulo>
+      </SubTitle>
       <CampInput error={nameError}>
         <Label>Nome:</Label>
         <Input
           type="text"
+          placeholder="ex: Tobias"
           value={name}
           onChange={(e) => handleInputChange(e, "name")}
         />
         {nameError && <ErrorMessage>Por favor, preencha o nome.</ErrorMessage>}
       </CampInput>
-      <CampInput error={nameError}>
+      <CampInput error={emailError}>
         <Label>Email:</Label>
         <Input
           type="email"
+          placeholder="ex: tobias@gmail.com"
           value={email}
           onChange={(e) => handleInputChange(e, "email")}
         />
@@ -61,15 +65,20 @@ const PersonalInfo = () => {
           <ErrorMessage>Por favor, preencha o email.</ErrorMessage>
         )}
       </CampInput>
-      <CampInput error={nameError}>
+      <CampInput error={numberError}>
         <Label>Numero de telefone:</Label>
         <Input
           type="text"
+          placeholder="ex: (99)999999999"
+          minLength={11}
+          maxLength={11}
           value={number}
           onChange={(e) => handleInputChange(e, "number")}
         />
-        {numberError && (
-          <ErrorMessage>Por favor, preencha o número de telefone.</ErrorMessage>
+         {numberError && (
+          <ErrorMessage>
+            Por favor, preencha o número de telefone.
+          </ErrorMessage>
         )}
       </CampInput>
       <button type="submit">Próxima etapa</button>
@@ -83,11 +92,11 @@ const Form = styled.form`
   padding: 5px;
 `;
 
-const Titulo = styled.h1`
+const Title = styled.h1`
   font-weight: 700;
 `;
 
-const SubTitulo = styled.p`
+const SubTitle = styled.p`
   font-size: 14px;
   font-weight: 400;
 `;
