@@ -81,7 +81,6 @@ const Form = styled.form`
   margin-left: 30px;
   width: 25rem;
   padding: 5px;
-  color: hsl(213, 96%, 18%);
 `;
 
 const Titulo = styled.h1`
@@ -107,7 +106,6 @@ const CampInput = styled.div`
 const Label = styled.label`
   font-weight: 500;
   margin-bottom: 5px;
-  color: hsl(213, 96%, 18%);
 `;
 
 const Input = styled.input`
