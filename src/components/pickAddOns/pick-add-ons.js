@@ -1,13 +1,26 @@
 import { styled } from "styled-components";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 const PickAddOns = () => {
   const history = useHistory();
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleNextStep = () => {
-    history.push("/finishing-up");
+    if (selectedOptions.length > 0) {
+      history.push("/finishing-up");
+    } else {
+      alert("Selecione pelo menos uma opção");
+    }
   };
 
+  const handleOptionToggle = (option) => {
+    if (selectedOptions.includes(option)) {
+      setSelectedOptions(selectedOptions.filter((item) => item !== option));
+    } else {
+      setSelectedOptions([...selectedOptions, option]);
+    }
+  };
   return (
     <AddOnsContainer>
       <h1>Escolher complemento</h1>
@@ -15,7 +28,10 @@ const PickAddOns = () => {
 
       <TypeAddOns>
         <AddOns>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={() => handleOptionToggle("onlineService")}
+          />
           <Div>
             <span>Serviço on-line</span>
             <span>Acesso a jogos multiplayer</span>
@@ -24,7 +40,10 @@ const PickAddOns = () => {
         </AddOns>
 
         <AddOns>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={() => handleOptionToggle("extraStorage")}
+          />
           <Div>
             <span>Armazenamento maiore</span>
             <span>1 TB extra de armazenamento na nuvem</span>
@@ -33,7 +52,10 @@ const PickAddOns = () => {
         </AddOns>
 
         <AddOns>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={() => handleOptionToggle("customProfile")}
+          />
           <Div>
             <span>Perfil personalizável</span>
             <span>Tema personalizado em seu perfil</span>
