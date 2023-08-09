@@ -8,14 +8,17 @@ const SelectYourPlan = () => {
 
   const handleNextStep = () => {
     if (selectedPlan) {
-      history.push("/pick-add-ons");
+      history.push({
+        pathname: "/pick-add-ons",
+        state: { selectedPlan }
+      });
     } else {
       alert("Selecione um plano");
     }
   };
 
-  const handlePlanClick = (plan) => {
-    setSelectedPlan(plan);
+  const handlePlanClick = (plan, price) => {
+    setSelectedPlan({ name: plan, price: price });
   };
 
   const [checked, setChecked] = useState(false);
@@ -30,8 +33,8 @@ const SelectYourPlan = () => {
       <p>Você tem a opção de cobrança anual.</p>
       <Plans>
         <Plan
-          onClick={() => handlePlanClick("arcade")}
-          selected={selectedPlan === "arcade"}
+          onClick={() => handlePlanClick("arcade", checked ? 90 : 9)}
+          selected={selectedPlan && selectedPlan.name === "arcade"}
         >
           <Img src="/images/icon-arcade.svg" alt="Icone arcade" />
           {checked ? (
@@ -48,8 +51,8 @@ const SelectYourPlan = () => {
           )}
         </Plan>
         <Plan
-          onClick={() => handlePlanClick("advanced")}
-          selected={selectedPlan === "advanced"}
+          onClick={() => handlePlanClick("advanced", checked ? 120 : 12)}
+          selected={selectedPlan && selectedPlan.name === "advanced"}
         >
           <Img src="/images/icon-advanced.svg" alt="Icone advanced" />
           {checked ? (
@@ -66,8 +69,8 @@ const SelectYourPlan = () => {
           )}
         </Plan>
         <Plan
-          onClick={() => handlePlanClick("pro")}
-          selected={selectedPlan === "pro"}
+          onClick={() => handlePlanClick("pro",  checked ? 150 : 15)}
+          selected={selectedPlan && selectedPlan.name === "pro"}
         >
           <Img src="/images/icon-pro.svg" alt="Icone pro" />
           {checked ? (

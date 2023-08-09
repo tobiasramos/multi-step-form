@@ -1,26 +1,43 @@
 import { styled } from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const PickAddOns = () => {
+  const location = useLocation();
+  const selectedPlan = location.state?.selectedPlan || null;
+
   const history = useHistory();
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleNextStep = () => {
     if (selectedOptions.length > 0) {
-      history.push("/finishing-up");
+      const totalAddonPrice = selectedOptions.reduce(
+        (total, option) => total + option.price,
+        0
+      );
+      const totalPrice = selectedPlan.price + totalAddonPrice;
+
+      history.push({
+        pathname: "/finishing-up",
+        state: { selectedPlan, selectedOptions, totalPrice },
+      });
     } else {
       alert("Selecione pelo menos uma opção");
     }
   };
 
-  const handleOptionToggle = (option) => {
-    if (selectedOptions.includes(option)) {
-      setSelectedOptions(selectedOptions.filter((item) => item !== option));
+  const handleOptionToggle = (option, price)=> {
+    const existingOption = selectedOptions.find((item) => item.name === option);
+    if (existingOption) {
+      setSelectedOptions(
+        selectedOptions.filter((item) => item.name !== option)
+      );
     } else {
-      setSelectedOptions([...selectedOptions, option]);
+      setSelectedOptions([...selectedOptions, { name: option, price }]);
     }
   };
+
   return (
     <AddOnsContainer>
       <h1>Escolher complemento</h1>
@@ -30,7 +47,7 @@ const PickAddOns = () => {
         <AddOns>
           <input
             type="checkbox"
-            onChange={() => handleOptionToggle("onlineService")}
+            onChange={() => handleOptionToggle("onlineService", 1)}
           />
           <Div>
             <span>Serviço on-line</span>
@@ -42,7 +59,7 @@ const PickAddOns = () => {
         <AddOns>
           <input
             type="checkbox"
-            onChange={() => handleOptionToggle("extraStorage")}
+            onChange={() => handleOptionToggle("extraStorage", 2)}
           />
           <Div>
             <span>Armazenamento maiore</span>
@@ -54,7 +71,7 @@ const PickAddOns = () => {
         <AddOns>
           <input
             type="checkbox"
-            onChange={() => handleOptionToggle("customProfile")}
+            onChange={() => handleOptionToggle("customProfile", 2)}
           />
           <Div>
             <span>Perfil personalizável</span>
