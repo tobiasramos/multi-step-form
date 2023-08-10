@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const PickAddOns = () => {
   const location = useLocation();
@@ -80,6 +80,7 @@ const PickAddOns = () => {
           <Price>+R$2,00/mês</Price>
         </AddOns>
       </TypeAddOns>
+      <Link to="/select-your-plan">Voltar</Link>
       <button onClick={handleNextStep}>Próxima etapa</button>
     </AddOnsContainer>
   );

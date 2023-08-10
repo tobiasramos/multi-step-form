@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const FinishingUp = ({ location }) => {
   const selectedPlan = location.state?.selectedPlan || null;
   const selectedOptions = location.state?.selectedOptions || [];
@@ -20,6 +22,7 @@ const FinishingUp = ({ location }) => {
           </li>
         ))}
       </ul>
+      <Link to="/pick-add-ons">Voltar</Link>
     </div>
   );
 };

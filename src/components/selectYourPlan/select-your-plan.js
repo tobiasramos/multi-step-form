@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const SelectYourPlan = () => {
   const history = useHistory();
@@ -99,6 +100,7 @@ const SelectYourPlan = () => {
         </Switch>
         <span className={checked ? 'active' : 'inactive'}>Anual</span>
       </SwitchContainer>
+      <Link to="/">Voltar</Link>
       <button onClick={handleNextStep}>Próxima etapa</button>
     </PlanContainer>
   );
