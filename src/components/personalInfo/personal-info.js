@@ -87,7 +87,6 @@ const PersonalInfo = () => {
 };
 
 const Form = styled.form`
-  margin-left: 30px;
   width: 25rem;
   padding: 5px;
 `;
