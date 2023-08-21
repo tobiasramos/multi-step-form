@@ -11,11 +11,23 @@ const Timeline = () => {
 
   const location = useLocation();
 
+  const handleClick = (event, isActive) => {
+    if (!isActive) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <TimelineContainer>
       {timelineSteps.map((step, index) => (
         <TimelineStep key={index} isActive={location.pathname === step.path}>
-          <NavLink to={step.path} activeClassName="active">
+          <NavLink
+            to={step.path}
+            activeClassName="active"
+            onClick={(event) =>
+              handleClick(event, location.pathname === step.path)
+            }
+          >
             {step.label}
           </NavLink>
         </TimelineStep>
@@ -33,12 +45,13 @@ const TimelineContainer = styled.div`
 `;
 
 const TimelineStep = styled.div`
-width: 15rem;
+  width: 15rem;
   flex: 1;
   text-align: center;
   margin: 6px;
 
   a {
+    cursor: auto;
     color: #333;
     text-decoration: none;
     display: block;
