@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import { styled } from 'styled-components';
+import BackButton from '../buttons/back-button';
+import NextButton from '../buttons/next-button';
 
 const FinishingUp = ({ location }) => {
   const selectedPlan = location.state?.selectedPlan || null;
@@ -22,9 +24,19 @@ const FinishingUp = ({ location }) => {
           </li>
         ))}
       </ul>
-      <Link to="/pick-add-ons">Voltar</Link>
+       <Btns>
+        <BackButton to="/pick-add-ons" />
+        <NextButton />
+      </Btns>
     </div>
   );
 };
+
+const Btns = styled.div`
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 export default FinishingUp;

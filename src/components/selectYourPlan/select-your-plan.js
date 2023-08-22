@@ -1,7 +1,8 @@
 import { styled } from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import NextButton from "../buttons/next-button";
+import BackButton from "../buttons/back-button";
 
 const SelectYourPlan = () => {
   const history = useHistory();
@@ -11,7 +12,7 @@ const SelectYourPlan = () => {
     if (selectedPlan) {
       history.push({
         pathname: "/pick-add-ons",
-        state: { selectedPlan }
+        state: { selectedPlan },
       });
     } else {
       alert("Selecione um plano");
@@ -70,7 +71,7 @@ const SelectYourPlan = () => {
           )}
         </Plan>
         <Plan
-          onClick={() => handlePlanClick("pro",  checked ? 150 : 15)}
+          onClick={() => handlePlanClick("pro", checked ? 150 : 15)}
           selected={selectedPlan && selectedPlan.name === "pro"}
         >
           <Img src="/images/icon-pro.svg" alt="Icone pro" />
@@ -89,7 +90,7 @@ const SelectYourPlan = () => {
         </Plan>
       </Plans>
       <SwitchContainer>
-      <span className={checked ? 'inactive' : 'active'}>Mensal</span>
+        <span className={checked ? "inactive" : "active"}>Mensal</span>
         <Switch>
           <input
             type="checkbox"
@@ -98,16 +99,17 @@ const SelectYourPlan = () => {
           />
           <span></span>
         </Switch>
-        <span className={checked ? 'active' : 'inactive'}>Anual</span>
+        <span className={checked ? "active" : "inactive"}>Anual</span>
       </SwitchContainer>
-      <Link to="/">Voltar</Link>
-      <button onClick={handleNextStep}>Próxima etapa</button>
+      <Btns>
+        <BackButton to="/" />
+        <NextButton onClick={handleNextStep} />
+      </Btns>
     </PlanContainer>
   );
 };
 
 const PlanContainer = styled.div`
-  border: 1px red solid;
   width: 25rem;
 `;
 
@@ -219,6 +221,13 @@ const Switch = styled.label`
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
+`;
+
+const Btns = styled.div`
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export default SelectYourPlan;

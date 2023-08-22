@@ -1,7 +1,9 @@
 import { styled } from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import NextButton from "../buttons/next-button";
+import BackButton from "../buttons/back-button";
 
 const PickAddOns = () => {
   const location = useLocation();
@@ -27,7 +29,7 @@ const PickAddOns = () => {
     }
   };
 
-  const handleOptionToggle = (option, price)=> {
+  const handleOptionToggle = (option, price) => {
     const existingOption = selectedOptions.find((item) => item.name === option);
     if (existingOption) {
       setSelectedOptions(
@@ -80,8 +82,10 @@ const PickAddOns = () => {
           <Price>+R$2,00/mês</Price>
         </AddOns>
       </TypeAddOns>
-      <Link to="/select-your-plan">Voltar</Link>
-      <button onClick={handleNextStep}>Próxima etapa</button>
+      <Btns>
+        <BackButton to="/select-your-plan" />
+        <NextButton onClick={handleNextStep} />
+      </Btns>
     </AddOnsContainer>
   );
 };
@@ -112,6 +116,13 @@ const Div = styled.div`
 const Price = styled.span`
   display: flex;
   right: 22px;
+`;
+
+const Btns = styled.div`
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export default PickAddOns;

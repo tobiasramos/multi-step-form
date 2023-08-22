@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import NextButton from "../buttons/next-button";
 
 const PersonalInfo = () => {
   const history = useHistory();
@@ -75,13 +76,11 @@ const PersonalInfo = () => {
           value={number}
           onChange={(e) => handleInputChange(e, "number")}
         />
-         {numberError && (
-          <ErrorMessage>
-            Por favor, preencha o número de telefone.
-          </ErrorMessage>
+        {numberError && (
+          <ErrorMessage>Por favor, preencha o número de telefone.</ErrorMessage>
         )}
       </CampInput>
-      <button type="submit">Próxima etapa</button>
+      <NextButton />
     </Form>
   );
 };
