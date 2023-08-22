@@ -7,6 +7,7 @@ import SelectYourPlan from "../components/selectYourPlan/select-your-plan";
 import PickAddOns from "../components/pickAddOns/pick-add-ons";
 import FinishingUp from "../components/finishingUp/finishing-up";
 import Timeline from "../components/timeline/timeline";
+import ThankYou from "../components/thank-you/thank-you";
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
           <Route path="/select-your-plan" component={SelectYourPlan} />
           <Route path="/pick-add-ons" component={PickAddOns} />
           <Route path="/finishing-up" component={FinishingUp} />
+          <Route path="/thank-you" component={ThankYou} />
         </Switch>
       </DivContainer>
     </Router>

@@ -1,10 +1,18 @@
-import { styled } from 'styled-components';
-import BackButton from '../buttons/back-button';
-import NextButton from '../buttons/next-button';
+import { styled } from "styled-components";
+import BackButton from "../buttons/back-button";
+import NextButton from "../buttons/next-button";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const FinishingUp = ({ location }) => {
+  const history = useHistory();
   const selectedPlan = location.state?.selectedPlan || null;
   const selectedOptions = location.state?.selectedOptions || [];
+
+  const handleNextStep = () => {
+    history.push({
+      pathname: "/thank-you",
+    });
+  };
 
   return (
     <div>
@@ -24,9 +32,9 @@ const FinishingUp = ({ location }) => {
           </li>
         ))}
       </ul>
-       <Btns>
+      <Btns>
         <BackButton to="/pick-add-ons" />
-        <NextButton />
+        <NextButton onClick={handleNextStep} />
       </Btns>
     </div>
   );
