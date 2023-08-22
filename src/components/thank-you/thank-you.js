@@ -15,7 +15,7 @@ const ThankYou = () => {
 };
 
 const Container = styled.div`
-  width: 36rem;
+  width: 30rem;
   display: flex;
   align-items: center;
   flex-direction: column;
