@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import styled from "styled-components";
+import styled, { StyleSheetManager } from "styled-components";
 
 const Timeline = () => {
   const timelineSteps = [
@@ -28,6 +28,9 @@ const Timeline = () => {
               handleClick(event, location.pathname === step.path)
             }
           >
+            <StepNumber isActive={location.pathname === step.path}>
+              {index + 1}
+            </StepNumber>
             {step.label}
           </NavLink>
         </TimelineStep>
@@ -54,7 +57,8 @@ const TimelineStep = styled.div`
     cursor: auto;
     color: #333;
     text-decoration: none;
-    display: block;
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center items */
     padding: 5px;
     border-radius: 5px;
     background-color: ${({ isActive }) => (isActive ? "#007bff" : "#f5f5f5")};
@@ -62,4 +66,17 @@ const TimelineStep = styled.div`
   }
 `;
 
-export default Timeline;
+const StepNumber = styled.span`
+  margin-right: 8px;
+  font-weight: ${({ isActive }) => (isActive ? "bold" : "normal")};
+`;
+
+function App() {
+  return (
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== "isActive"}>
+      <Timeline />
+    </StyleSheetManager>
+  );
+}
+
+export default App;

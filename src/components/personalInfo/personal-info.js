@@ -44,7 +44,7 @@ const PersonalInfo = () => {
       <SubTitle>
         Por favor, forneça seu nome, email e número de telefone.
       </SubTitle>
-      <CampInput error={nameError}>
+      <CampInput error={nameError ? "true" : undefined}>
         <Label>Nome:</Label>
         <Input
           type="text"
@@ -54,7 +54,7 @@ const PersonalInfo = () => {
         />
         {nameError && <ErrorMessage>Por favor, preencha o nome.</ErrorMessage>}
       </CampInput>
-      <CampInput error={emailError}>
+      <CampInput error={nameError ? "true" : undefined}>
         <Label>Email:</Label>
         <Input
           type="email"
@@ -66,7 +66,7 @@ const PersonalInfo = () => {
           <ErrorMessage>Por favor, preencha o email.</ErrorMessage>
         )}
       </CampInput>
-      <CampInput error={numberError}>
+      <CampInput error={nameError ? "true" : undefined}>
         <Label>Numero de telefone:</Label>
         <Input
           type="text"
@@ -80,7 +80,7 @@ const PersonalInfo = () => {
           <ErrorMessage>Por favor, preencha o número de telefone.</ErrorMessage>
         )}
       </CampInput>
-      <NextButton />
+      <NextButton onClick={handleNextStep} />
     </Form>
   );
 };
