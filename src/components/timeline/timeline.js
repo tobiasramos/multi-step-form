@@ -29,9 +29,9 @@ const Timeline = () => {
             }
           >
             <StepNumber isActive={location.pathname === step.path}>
-              {index + 1}
+              <div>{index + 1}</div>
             </StepNumber>
-            {step.label}
+            <div className="title">{step.label}</div>
           </NavLink>
         </TimelineStep>
       ))}
@@ -45,6 +45,14 @@ const TimelineContainer = styled.div`
   justify-content: space-between;
   margin-top: 10px;
   padding: 10px;
+
+  @media (max-width: 818px) {
+    flex-direction: row;
+
+    .title {
+      display: none;
+    }
+  }
 `;
 
 const TimelineStep = styled.div`
@@ -63,6 +71,12 @@ const TimelineStep = styled.div`
     border-radius: 5px;
     background-color: ${({ isActive }) => (isActive ? "#007bff" : "#f5f5f5")};
     color: ${({ isActive }) => (isActive ? "white" : "#333")};
+  }
+
+  @media (max-width: 818px) {
+    width: 30px;
+    border-radius: 50px;
+    }
   }
 `;
 

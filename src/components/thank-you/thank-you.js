@@ -26,6 +26,11 @@ const Container = styled.div`
     padding: 5px;
     font-size: 18px;
   }
+
+  @media (max-width: 540px) {
+    width: 80%;
+    text-align: center;
+  }
 `;
 
 export default ThankYou;
