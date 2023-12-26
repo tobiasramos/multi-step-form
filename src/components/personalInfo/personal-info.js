@@ -5,37 +5,55 @@ import NextButton from "../buttons/next-button";
 
 const PersonalInfo = () => {
   const history = useHistory();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+  });
 
-  const [nameError, setNameError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [numberError, setNumberError] = useState(false);
+  const [errorInputs, setErrorInputs] = useState({
+    nameError: "",
+    emailError: "",
+    phoneNumberError: "",
+  });
 
   const handleNextStep = (e) => {
     e.preventDefault();
 
-    if (name && email && number) {
+    if (inputs.name && inputs.email && inputs.phoneNumber) {
       history.push("/select-your-plan");
     } else {
-      if (!name) setNameError(true);
-      if (!email) setEmailError(true);
-      if (!number) setNumberError(true);
+      if (!inputs.name) {
+        setErrorInputs({
+          ...errorInputs,
+          nameError: "Por favor, preencha o nome.",
+        });
+      } else if (!inputs.email) {
+        setErrorInputs({
+          ...errorInputs,
+          emailError: "Por favor, preencha o email.",
+        });
+      } else if (!inputs.phoneNumber) {
+        setErrorInputs({
+          ...errorInputs,
+          phoneNumberError: "Por favor, preencha o número de telefone.",
+        });
+      }
     }
   };
 
   const handleInputChange = (e, inputType) => {
-    if (inputType === "name") {
-      setName(e.target.value);
-      setNameError(false);
-    } else if (inputType === "email") {
-      setEmail(e.target.value);
-      setEmailError(false);
-    } else if (inputType === "number") {
-      setNumber(e.target.value);
-      setNumberError(false);
-    }
+    const { value } = e.target;
+
+    setInputs({
+      ...inputs,
+      [inputType]: value,
+    });
+
+    setErrorInputs({
+      ...errorInputs,
+      [`${inputType}Error`]: "", 
+    });
   };
 
   return (
@@ -44,40 +62,48 @@ const PersonalInfo = () => {
       <SubTitle>
         Por favor, forneça seu nome, email e número de telefone.
       </SubTitle>
-      <CampInput error={nameError ? "true" : undefined}>
+      <CampInput>
         <Label>Nome:</Label>
         <Input
           type="text"
           placeholder="ex: Tobias"
-          value={name}
+          value={inputs.name}
           onChange={(e) => handleInputChange(e, "name")}
         />
-        {nameError && <ErrorMessage>Por favor, preencha o nome.</ErrorMessage>}
+        {errorInputs.nameError ? (
+          <ErrorMessage>{errorInputs.nameError}</ErrorMessage>
+        ) : (
+          ""
+        )}
       </CampInput>
-      <CampInput error={nameError ? "true" : undefined}>
+      <CampInput>
         <Label>Email:</Label>
         <Input
           type="email"
           placeholder="ex: tobias@gmail.com"
-          value={email}
+          value={inputs.email}
           onChange={(e) => handleInputChange(e, "email")}
         />
-        {emailError && (
-          <ErrorMessage>Por favor, preencha o email.</ErrorMessage>
+        {errorInputs.emailError ? (
+          <ErrorMessage>{errorInputs.emailError}</ErrorMessage>
+        ) : (
+          ""
         )}
       </CampInput>
-      <CampInput error={nameError ? "true" : undefined}>
+      <CampInput>
         <Label>Numero de telefone:</Label>
         <Input
           type="text"
           placeholder="ex: (99)999999999"
           minLength={11}
           maxLength={11}
-          value={number}
-          onChange={(e) => handleInputChange(e, "number")}
+          value={inputs.phoneNumber}
+          onChange={(e) => handleInputChange(e, "phoneNumber")}
         />
-        {numberError && (
-          <ErrorMessage>Por favor, preencha o número de telefone.</ErrorMessage>
+        {errorInputs.phoneNumberError ? (
+          <ErrorMessage>{errorInputs.phoneNumberError}</ErrorMessage>
+        ) : (
+          ""
         )}
       </CampInput>
       <NextButton onClick={handleNextStep} />
@@ -88,6 +114,10 @@ const PersonalInfo = () => {
 const Form = styled.form`
   width: 25rem;
   padding: 5px;
+
+  @media (max-width: 540px) {
+    width: 90%;
+  }
 `;
 
 const Title = styled.h1`
@@ -116,7 +146,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 85%;
+  width: 80%;
   height: 25px;
   padding: 5px;
   border-radius: 10px;

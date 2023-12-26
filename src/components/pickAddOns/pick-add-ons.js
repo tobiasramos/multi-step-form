@@ -92,6 +92,10 @@ const PickAddOns = () => {
 
 const AddOnsContainer = styled.div`
   font-size: 14px;
+
+  @media (max-width: 540px) {
+    text-align: center;
+  }
 `;
 
 const TypeAddOns = styled.div``;
@@ -105,6 +109,11 @@ const AddOns = styled.div`
   padding: 5px;
   margin-bottom: 15px;
   border-radius: 10px;
+
+  @media (max-width: 540px) {
+    width: 80%;
+    margin: 10px auto;
+  }
 `;
 
 const Div = styled.div`
@@ -123,6 +132,11 @@ const Btns = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 540px) {
+    width: 18rem;
+    margin: auto auto;
+  }
 `;
 
 export default PickAddOns;

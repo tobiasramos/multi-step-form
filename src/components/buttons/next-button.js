@@ -10,8 +10,8 @@ NextButton.propTypes = {
 };
 
 const Button = styled.button`
-  padding: 10px;
-  height: 5vh;
+  padding: 5px;
+  height: 8vh;
   border: none;
   cursor: pointer;
   color: #fff;

@@ -111,11 +111,23 @@ const SelectYourPlan = () => {
 
 const PlanContainer = styled.div`
   width: 25rem;
+  padding: 10px;
+
+  @media (max-width: 540px) {
+    width: 100%;
+    height: 50%;;
+    text-align: center;
+  }
 `;
 
 const Plans = styled.div`
   display: flex;
   justify-content: center;
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Plan = styled.div`
@@ -133,6 +145,10 @@ const Plan = styled.div`
     `
     border-color: blue;
   `}
+
+  @media (max-width: 540px) {
+    margin-top: 10px;
+  }
 `;
 
 const Img = styled.img`
@@ -228,6 +244,11 @@ const Btns = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 540px) {
+    width: 20rem;
+    margin: 10px auto;
+  }
 `;
 
 export default SelectYourPlan;

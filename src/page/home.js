@@ -14,7 +14,6 @@ const Home = () => {
     <Router>
       <DivContainer>
         <ImgContainer>
-          <img src="/images/bg-sidebar-desktop.svg" alt="Fundo" />
           <TimelineContainer>
             <Timeline />
           </TimelineContainer>
@@ -38,11 +37,29 @@ const DivContainer = styled.div`
   align-items: center;
   border-radius: 10px;
   background-color: hsl(0, 0%, 100%);
+
+  @media (max-width: 818px) {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
 `;
 
 const ImgContainer = styled.div`
   position: relative;
   margin-right: 35px;
+
+  width: 350px;
+  height: 90vh;
+  background-image: url("/images/bg-sidebar-desktop.svg");
+  background-size: cover;
+  background-position: center;
+
+  @media (max-width: 818px) {
+    width: 100%;
+    height: 35vh;
+    margin-right: 0px;
+  }
 `;
 
 const TimelineContainer = styled.div`
