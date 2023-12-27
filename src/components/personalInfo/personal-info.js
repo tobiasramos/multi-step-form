@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import NextButton from "../buttons/next-button";
+import { validateEmail, validatePhoneNumber } from "./validations";
 
 const PersonalInfo = () => {
   const history = useHistory();
@@ -20,25 +21,39 @@ const PersonalInfo = () => {
   const handleNextStep = (e) => {
     e.preventDefault();
 
-    if (inputs.name && inputs.email && inputs.phoneNumber) {
+    const isEmailValid = validateEmail(inputs.email);
+    const isPhoneNumberValid = validatePhoneNumber(inputs.phoneNumber);
+
+    let newErrors = {};
+
+    if (!inputs.name) {
+      newErrors = {
+        ...newErrors,
+        nameError: "Por favor, preencha o nome.",
+      };
+    }
+
+    if (!isEmailValid) {
+      newErrors = {
+        ...newErrors,
+        emailError: "Por favor, insira um email válido.",
+      };
+    }
+
+    if (!isPhoneNumberValid) {
+      newErrors = {
+        ...newErrors,
+        phoneNumberError: "Por favor, insira um número de telefone válido.",
+      };
+    }
+
+    setErrorInputs({
+      ...errorInputs,
+      ...newErrors,
+    });
+
+    if (inputs.name && isEmailValid && isPhoneNumberValid) {
       history.push("/select-your-plan");
-    } else {
-      if (!inputs.name) {
-        setErrorInputs({
-          ...errorInputs,
-          nameError: "Por favor, preencha o nome.",
-        });
-      } else if (!inputs.email) {
-        setErrorInputs({
-          ...errorInputs,
-          emailError: "Por favor, preencha o email.",
-        });
-      } else if (!inputs.phoneNumber) {
-        setErrorInputs({
-          ...errorInputs,
-          phoneNumberError: "Por favor, preencha o número de telefone.",
-        });
-      }
     }
   };
 
@@ -52,7 +67,7 @@ const PersonalInfo = () => {
 
     setErrorInputs({
       ...errorInputs,
-      [`${inputType}Error`]: "", 
+      [`${inputType}Error`]: "",
     });
   };
 
