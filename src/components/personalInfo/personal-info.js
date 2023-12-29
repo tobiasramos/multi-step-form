@@ -78,8 +78,9 @@ const PersonalInfo = () => {
         Por favor, forneça seu nome, email e número de telefone.
       </SubTitle>
       <CampInput>
-        <Label>Nome:</Label>
+        <Label htmlFor="nameInput">Nome:</Label>
         <Input
+          id="nameInput"
           type="text"
           placeholder="ex: Tobias"
           value={inputs.name}
@@ -92,8 +93,9 @@ const PersonalInfo = () => {
         )}
       </CampInput>
       <CampInput>
-        <Label>Email:</Label>
+        <Label htmlFor="emailInput">Email:</Label>
         <Input
+          id="emailInput"
           type="email"
           placeholder="ex: tobias@gmail.com"
           value={inputs.email}
@@ -106,8 +108,9 @@ const PersonalInfo = () => {
         )}
       </CampInput>
       <CampInput>
-        <Label>Numero de telefone:</Label>
+        <Label htmlFor="phoneNumberInput">Numero de telefone:</Label>
         <Input
+          id="phoneNumberInput"
           type="text"
           placeholder="ex: (99)999999999"
           minLength={11}
